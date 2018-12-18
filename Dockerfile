@@ -1,5 +1,5 @@
 FROM openjdk:8-alpine
-MAINTAINER Andrew Taranik <me@pureclouds.net>
+MAINTAINER Lorenzo Monaco <m3m3nto@gmail.com>
 
 ENV WORKDIR   /nutch
 ENV NUTCH_VER 2.3.1
@@ -34,12 +34,12 @@ ADD conf/gora.properties     ${WORKDIR}/conf/gora.properties
 ADD conf/regex-urlfilter.txt ${WORKDIR}/conf/regex-urlfilter.txt
 
 # Copy seeds
-ADD urls /urls
+RUN mkdir /urls
 
 ENV PATH ${WORKDIR}/bin:${PATH}
 WORKDIR ${WORKDIR}
 
-# Copy shell scipts to run nutch
+# Copy shell scripts to run nutch
 ADD scripts/*.sh ${WORKDIR}/bin/
 
 # Default count of iterations

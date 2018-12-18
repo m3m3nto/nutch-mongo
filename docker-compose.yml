@@ -1,6 +1,13 @@
 version: '2'
 services:
   nutch:
-    image: pure/nutch-mongo:alpine
+    image: altura-nutch
+    volumes:
+      - /htdocs/nutch-mongo/urls:/urls
+      - /htdocs/nutch-mongo/conf/gora.properties:/nutch/conf/gora.properties
+      - /htdocs/nutch-mongo/conf/nutch-site.xml:/nutch/conf/nutch-site.xml
+      - /htdocs/nutch-mongo/conf/regex-urlfilter.txt:/nutch/conf/regex-urlfilter.txt
   mongo:
     image: mongo:3.2
+    ports:
+      - 172.18.0.1:27017:27017
